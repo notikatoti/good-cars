@@ -1,7 +1,12 @@
 {
-  "name": "good-cars",
+  "name": "goooood-cars",
   "version": "0.1.0",
   "private": true,
+  "engines":{
+    "node": "10.15.2",
+    "npm": "6.4.1"
+  },
+
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "react": "^16.8.4",
