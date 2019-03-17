@@ -1,10 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "typeface-roboto";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import CarsList from "./containers/CarsContainer";
+import Information from "./components/Information";
+import CarDetail from "./components/CarDetail";
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App>
+      <Switch>
+        <Route exact path="/" component={CarsList} />
+        <Route path="/car-detail/:id" component={CarDetail} />
+        <Route path="/information" component={Information} />
+      </Switch>
+    </App>
+  </BrowserRouter>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
