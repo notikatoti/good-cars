@@ -1,31 +1,35 @@
 import React from "react";
-import { Paper, Typography, Grid } from "@material-ui/core";
+import { Paper, Typography, Grid, withStyles } from "@material-ui/core";
 
-const Intro = () => (
-  <Paper style={{ padding: 20, marginBottom: 35 }}>
-    <Grid container>
-      <Grid item md={6}>
-        <Typography gutterBottom variant="headline">
-          It's just the best place to buy your new Goooood Car.
-        </Typography>
-        <Typography gutterBottom component="p">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
-          fuga laborum deserunt ad velit modi ullam maiores laudantium, quas
-          ipsum cum blanditiis iure doloribus eaque quis, non porro iusto dicta.
-        </Typography>
-        <Typography gutterBottom component="p">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
-          fuga laborum deserunt ad velit modi ullam maiores laudantium, quas
-          ipsum cum blanditiis iure doloribus eaque quis, non porro iusto dicta.
-        </Typography>
-        <Typography gutterBottom component="p">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
-          fuga laborum deserunt ad velit modi ullam maiores laudantium, quas
-          ipsum cum blanditiis iure doloribus eaque quis, non porro iusto dicta.
-        </Typography>
+const styles = {
+  intro: {
+    padding: 20,
+    marginBottom: 35
+  }
+};
+
+const Intro = props => {
+  const { classes } = props;
+
+  return (
+    <Paper className={classes.intro}>
+      <Grid container>
+        <Grid item md={6}>
+          <Typography gutterBottom variant="headline">
+            It's just the best place to find a Goooood Car that is right for
+            you.
+          </Typography>
+          <Typography gutterBottom component="p">
+            On our site you can pick up a car to your liking, read the reviews
+            about cars. We have to look at.
+          </Typography>
+          <Typography gutterBottom component="p">
+            We know all about cars!
+          </Typography>
+        </Grid>
       </Grid>
-    </Grid>
-  </Paper>
-);
+    </Paper>
+  );
+};
 
-export default Intro;
+export default withStyles(styles)(Intro);

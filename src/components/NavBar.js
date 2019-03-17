@@ -1,14 +1,31 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  withStyles
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const styles = {
+  flexGrow: {
+    flexGrow: 1
+  },
+  textDecorationNone: {
+    textDecoration: "none"
+  }
+};
+
+const NavBar = props => {
+  const { classes } = props;
+
   return (
-    <div style={{ flexGrow: 1 }}>
+    <div className={classes.flexGrow}>
       <AppBar position="static">
         <Toolbar>
           <Typography
-            style={{ textDecoration: "none", flexGrow: "1" }}
+            className={`${classes.flexGrow} ${classes.textDecorationNone}`}
             component={Link}
             to="/"
             variant="title"
@@ -28,4 +45,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default withStyles(styles)(NavBar);

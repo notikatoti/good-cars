@@ -5,24 +5,37 @@ import {
   CardContent,
   CardMedia,
   Button,
-  Typography
+  Typography,
+  withStyles
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-const CarsList = ({ car }) => {
+const styles = {
+  image: {
+    height: 0,
+    paddingTop: "50%"
+  },
+  content: {
+    borderBottom: "1px solid rgba(0,0,0,.125)"
+  },
+  title: {
+    textTransform: "uppercase",
+    textDecoration: "none"
+  }
+};
+
+const CarsList = ({ car, ...props }) => {
+  const { classes } = props;
+
   return (
     <div>
       <Card>
-        <CardMedia style={{ height: 0, paddingTop: "50%" }} image={car.img} />
-        <CardContent style={{ borderBottom: "1px solid rgba(0,0,0,.125)" }}>
+        <CardMedia className={classes.image} image={car.img} />
+        <CardContent className={classes.content}>
           <Typography color="textSecondary" gutterBottom>
             {car.price}
           </Typography>
-          <Typography
-            style={{ textTransform: "uppercase", textDecoration: "none" }}
-            gutterBottom
-            variant="headline"
-          >
+          <Typography className={classes.title} gutterBottom variant="headline">
             {car.title}
           </Typography>
           <Typography component="p">{car.description}</Typography>
@@ -45,4 +58,4 @@ const CarsList = ({ car }) => {
   );
 };
 
-export default CarsList;
+export default withStyles(styles)(CarsList);

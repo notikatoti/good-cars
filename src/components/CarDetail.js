@@ -8,44 +8,78 @@ import {
   TableCell,
   TableRow,
   CardMedia,
-  Button
+  Button,
+  withStyles
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+
+const styles = {
+  main: {
+    padding: 24
+  },
+  title: {
+    marginBottom: 35
+  },
+  home: {
+    marginBottom: 15
+  },
+  review: {
+    paddingBottom: 10
+  },
+  uppercase: {
+    textTransform: "uppercase"
+  },
+  padding: {
+    padding: 20
+  },
+  bold: {
+    fontWeight: "bold"
+  },
+  borderBottom: {
+    borderBottom: "1px solid rgba(0,0,0,.125)"
+  },
+  textAlignRight: {
+    textAlign: "right",
+    fontStyle: "italic"
+  }
+};
 
 const CarDetail = ({
   location: {
     state: { car }
-  }
+  },
+  ...props
 }) => {
+  const { classes } = props;
+
   return (
-    <div style={{ padding: 24 }}>
+    <div className={classes.main}>
       <Button
         component={Link}
         to="/"
-        style={{ marginBottom: 35 }}
+        className={classes.home}
         color="primary"
         variant="outlined"
       >
         To Home Page
       </Button>
-      <Paper style={{ marginBottom: 35 }}>
+      <Paper className={classes.title}>
         <Typography
-          style={{ textTransform: "uppercase", padding: 20 }}
+          className={`${classes.uppercase} ${classes.padding} ${
+            classes.borderBottom
+          }`}
           variant="h5"
         >
           {car.title}
         </Typography>
-        <Typography
-          style={{ borderTop: "1px solid rgba(0,0,0,.125)", padding: 20 }}
-          component="p"
-        >
-          <Typography style={{ fontWeight: "bold" }} variant="overline">
+        <Typography className={classes.padding} component="p">
+          <Typography className={classes.bold} variant="overline">
             Goooood Cars rating:{" "}
             <Typography inline variant="overline">
               {car.rating[0].goodCars}/5
             </Typography>
           </Typography>
-          <Typography style={{ fontWeight: "bold" }} variant="overline">
+          <Typography className={classes.bold} variant="overline">
             Owners rating:{" "}
             <Typography inline variant="overline">
               {car.rating[1].owners}/5
@@ -62,7 +96,7 @@ const CarDetail = ({
                   <TableCell variant="head" component="th">
                     Brand
                   </TableCell>
-                  <TableCell style={{ textTransform: "uppercase" }}>
+                  <TableCell className={classes.uppercase}>
                     {car.brand}
                   </TableCell>
                 </TableRow>
@@ -70,7 +104,7 @@ const CarDetail = ({
                   <TableCell variant="head" component="th">
                     Model
                   </TableCell>
-                  <TableCell style={{ textTransform: "uppercase" }}>
+                  <TableCell className={classes.uppercase}>
                     {car.model}
                   </TableCell>
                 </TableRow>
@@ -78,7 +112,7 @@ const CarDetail = ({
                   <TableCell variant="head" component="th">
                     Color
                   </TableCell>
-                  <TableCell style={{ textTransform: "uppercase" }}>
+                  <TableCell className={classes.uppercase}>
                     {car.color}
                   </TableCell>
                 </TableRow>
@@ -86,7 +120,7 @@ const CarDetail = ({
                   <TableCell variant="head" component="th">
                     Year
                   </TableCell>
-                  <TableCell style={{ textTransform: "uppercase" }}>
+                  <TableCell className={classes.uppercase}>
                     {car.year}
                   </TableCell>
                 </TableRow>
@@ -94,15 +128,13 @@ const CarDetail = ({
                   <TableCell variant="head" component="th">
                     VIN
                   </TableCell>
-                  <TableCell style={{ textTransform: "uppercase" }}>
-                    {car.vin}
-                  </TableCell>
+                  <TableCell className={classes.uppercase}>{car.vin}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell variant="head" component="th">
                     Price
                   </TableCell>
-                  <TableCell style={{ textTransform: "uppercase" }}>
+                  <TableCell className={classes.uppercase}>
                     {car.price}
                   </TableCell>
                 </TableRow>
@@ -112,14 +144,9 @@ const CarDetail = ({
         </Grid>
         <Grid item xs={12} sm={12} lg={4} xl={3}>
           <Paper>
-            <div
-              style={{
-                borderBottom: "1px solid rgba(0,0,0,.125)",
-                padding: 20
-              }}
-            >
+            <div className={`${classes.padding} ${classes.borderBottom}`}>
               <Typography
-                style={{ textTransform: "uppercase" }}
+                className={classes.uppercase}
                 variant="h5"
                 component="h3"
                 gutterBottom
@@ -130,9 +157,9 @@ const CarDetail = ({
                 {car.description}
               </Typography>
             </div>
-            <div style={{ padding: 20 }}>
+            <div className={classes.padding}>
               <Typography
-                style={{ textTransform: "uppercase" }}
+                className={classes.uppercase}
                 variant="h5"
                 component="h3"
                 gutterBottom
@@ -141,17 +168,12 @@ const CarDetail = ({
               </Typography>
               {car.reviews.map(review => {
                 return (
-                  <div
-                    style={{
-                      paddingBottom: 10
-                    }}
-                    key={review.id}
-                  >
+                  <div className={classes.review} key={review.id}>
                     <Typography variant="button" gutterBottom>
                       "{review.title}"
                     </Typography>
                     <Typography gutterBottom>{review.review}</Typography>
-                    <Typography style={{ textAlign: "right" }} gutterBottom>
+                    <Typography className={classes.textAlignRight} gutterBottom>
                       {review.author}
                     </Typography>
                     <Typography color="textSecondary" variant="overline">
@@ -171,14 +193,9 @@ const CarDetail = ({
         </Grid>
         <Grid item xs={12} sm={12} lg={4} xl={6}>
           <Paper>
-            <div
-              style={{
-                borderBottom: "1px solid rgba(0,0,0,.125)",
-                padding: 20
-              }}
-            >
+            <div className={`${classes.padding} ${classes.borderBottom}`}>
               <Typography
-                style={{ textTransform: "uppercase" }}
+                className={classes.uppercase}
                 variant="h5"
                 component="h3"
                 gutterBottom
@@ -198,4 +215,4 @@ const CarDetail = ({
   );
 };
 
-export default CarDetail;
+export default withStyles(styles)(CarDetail);

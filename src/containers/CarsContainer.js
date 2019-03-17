@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, withStyles } from "@material-ui/core";
 import CarsList from "../components/CarsList";
 import Intro from "../components/Intro";
 
@@ -120,20 +120,27 @@ const CARS = [
   }
 ];
 
-class CarsContainer extends Component {
-  state = {
-    cars: CARS
-  };
+const styles = {
+  main: {
+    padding: 25
+  },
+  title: {
+    marginBottom: 15
+  }
+};
 
+class CarsContainer extends Component {
   render() {
+    const { classes } = this.props;
+
     return (
-      <div style={{ padding: 24 }}>
+      <div className={classes.main}>
         <Intro />
-        <Typography variant="headline" style={{ marginBottom: 15 }}>
+        <Typography className={classes.title} variant="headline">
           All vehicles in our directory
         </Typography>
         <Grid container spacing={24}>
-          {this.state.cars.map(car => {
+          {CARS.map(car => {
             return (
               <Grid key={car.id} item xs={12} sm={6} lg={4} xl={3}>
                 <CarsList car={car} />
@@ -146,4 +153,4 @@ class CarsContainer extends Component {
   }
 }
 
-export default CarsContainer;
+export default withStyles(styles)(CarsContainer);
