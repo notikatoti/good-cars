@@ -21,7 +21,7 @@ const Intro = props => {
           </Typography>
           <Typography gutterBottom component="p">
             On our site you can pick up a car to your liking, read the reviews
-            about cars. We have to look at.
+            about cars. You have to look at.
           </Typography>
           <Typography gutterBottom component="p">
             We know all about cars!

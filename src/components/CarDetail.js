@@ -41,6 +41,11 @@ const styles = {
   textAlignRight: {
     textAlign: "right",
     fontStyle: "italic"
+  },
+  lastChild: {
+    "&:last-child": {
+      paddingBottom: 0
+    }
   }
 };
 
@@ -168,7 +173,10 @@ const CarDetail = ({
               </Typography>
               {car.reviews.map(review => {
                 return (
-                  <div className={classes.review} key={review.id}>
+                  <div
+                    className={`${classes.review} ${classes.lastChild}`}
+                    key={review.id}
+                  >
                     <Typography variant="button" gutterBottom>
                       "{review.title}"
                     </Typography>
